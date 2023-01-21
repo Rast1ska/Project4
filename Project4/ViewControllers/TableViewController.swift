@@ -20,11 +20,6 @@ final class TableViewController: UIViewController {
     private var websites = ["hackingwithswift.com", "apple.com"]
     
     //MARK: -Override Methods
-    override func loadView() {
-        super.loadView()
-        tableView.frame = view.bounds
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -37,6 +32,7 @@ final class TableViewController: UIViewController {
     private func setupView() {
         addSubView()
         setupNavigationController()
+        tableView.frame = view.bounds
     }
 
     private func addSubView() {
@@ -70,7 +66,7 @@ extension TableViewController: UITableViewDelegate {
         let mainViewController = MainViewController()
         let website = websites[indexPath.row]
         mainViewController.website = website
-        
-        present(mainViewController, animated: true)
+        mainViewController.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(mainViewController, animated: true)
     }
 }
