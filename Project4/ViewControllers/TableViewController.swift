@@ -17,6 +17,8 @@ final class TableViewController: UIViewController {
         return tableView
     }()
     
+    private var websites = ["hackingwithswift.com", "apple.com"]
+    
     //MARK: -Override Methods
     override func loadView() {
         super.loadView()
@@ -28,6 +30,7 @@ final class TableViewController: UIViewController {
         setupView()
         
         tableView.dataSource = self
+        tableView.delegate = self
     }
     
     //MARK: -Private Methods
@@ -50,14 +53,24 @@ final class TableViewController: UIViewController {
 // MARK: UITableViewDataSource
 extension TableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        websites.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         var content = cell.defaultContentConfiguration()
-        content.text = "\(indexPath.row)"
+        let website = websites[indexPath.row]
+        content.text = "\(website)"
         cell.contentConfiguration = content
         return cell
+    }
+}
+extension TableViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let mainViewController = MainViewController()
+        let website = websites[indexPath.row]
+        mainViewController.website = website
+        
+        present(mainViewController, animated: true)
     }
 }

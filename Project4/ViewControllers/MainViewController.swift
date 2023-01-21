@@ -10,6 +10,8 @@ import UIKit
 
 class MainViewController: UIViewController, WKNavigationDelegate {
     
+    var website: String?
+    
     var webView: WKWebView!
     var progressView: UIProgressView!
     
@@ -42,6 +44,8 @@ class MainViewController: UIViewController, WKNavigationDelegate {
         guard let url = URL(string: "https://" + websites[0]) else { return }
         webView.load(URLRequest(url: url))
         webView.allowsBackForwardNavigationGestures = true
+        
+        print(website)
     }
     
     
