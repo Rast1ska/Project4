@@ -8,7 +8,7 @@
 import WebKit
 import UIKit
 
-class ViewController: UIViewController, WKNavigationDelegate {
+class MainViewController: UIViewController, WKNavigationDelegate {
     
     var webView: WKWebView!
     var progressView: UIProgressView!
