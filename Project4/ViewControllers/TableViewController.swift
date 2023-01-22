@@ -17,7 +17,7 @@ final class TableViewController: UIViewController {
         return tableView
     }()
     
-    private var websites = ["hackingwithswift.com", "apple.com"]
+    private var websites = ["hackingwithswift.com", "google.com"]
     
     //MARK: -Override Methods
     override func viewDidLoad() {

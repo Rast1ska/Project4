@@ -74,11 +74,11 @@ final class MainViewController: UIViewController, WKNavigationDelegate {
     
     private func setupToolBar() {
         let progressButton = UIBarButtonItem(customView: progressView)
-        
+        let goBackButton = UIBarButtonItem(barButtonSystemItem: .rewind, target: webView, action: #selector(webView.goBack))
         let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let refresh = UIBarButtonItem(barButtonSystemItem: .refresh, target: webView, action: #selector(webView.reload))
+        let goForwardButton = UIBarButtonItem(barButtonSystemItem: .fastForward, target: webView, action: #selector(webView.goForward))
         
-        toolbarItems = [progressButton, spacer, refresh]
+        toolbarItems = [goBackButton, spacer, progressButton, spacer, goForwardButton]
     }
     
     private func setupNavigationController() {
@@ -87,6 +87,7 @@ final class MainViewController: UIViewController, WKNavigationDelegate {
                                                             action: #selector(webView.reload))
         
         navigationController?.isToolbarHidden = false
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     private func setupWebView() {
